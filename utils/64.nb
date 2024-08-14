@@ -23,81 +23,86 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1060,         20]
-NotebookDataLength[      3367,         96]
-NotebookOptionsPosition[      3908,         95]
-NotebookOutlinePosition[      4315,        111]
-CellTagsIndexPosition[      4272,        108]
+NotebookDataLength[      3366,        101]
+NotebookOptionsPosition[      3875,         99]
+NotebookOutlinePosition[      4314,        116]
+CellTagsIndexPosition[      4271,        113]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{
-  RowBox[{"SortedCSVScatterPlot", "[", 
-   RowBox[{
-   "file_String", ",", " ", "columnX_String", ",", " ", "\n", "   ", 
-    "columnY_String"}], "]"}], " ", ":=", " ", 
-  RowBox[{"Module", "[", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{
-     "data", ",", " ", "header", ",", " ", "xIndex", ",", " ", "yIndex", ",", 
-      " ", "\n", "    ", "xData", ",", " ", "yData"}], "}"}], ",", " ", 
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SortedCSVScatterPlot", "[", 
+    RowBox[{"file_String", ",", "columnX_String", ",", "columnY_String"}], 
+    "]"}], ":=", 
+   RowBox[{"Module", "[", 
     RowBox[{
-     RowBox[{"data", " ", "=", " ", 
-      RowBox[{"Import", "[", "file", "]"}]}], ";", " ", 
-     RowBox[{"header", " ", "=", " ", 
-      RowBox[{"First", "[", "data", "]"}]}], ";", " ", "\n", "    ", 
-     RowBox[{"xIndex", " ", "=", " ", 
+     RowBox[{"{", 
       RowBox[{
-       RowBox[{"Position", "[", 
-        RowBox[{"header", ",", " ", "columnX"}], "]"}], "[", 
-       RowBox[{"[", 
-        RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", " ", "\n", "    ", 
-     RowBox[{"yIndex", " ", "=", " ", 
-      RowBox[{
-       RowBox[{"Position", "[", 
-        RowBox[{"header", ",", " ", "columnY"}], "]"}], "[", 
-       RowBox[{"[", 
-        RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", " ", "\n", "    ", 
-     RowBox[{"xData", " ", "=", " ", 
-      RowBox[{"data", "[", 
-       RowBox[{"[", 
-        RowBox[{
-         RowBox[{"2", " ", ";;", " ", "All"}], ",", "xIndex"}], "]"}], 
-       "]"}]}], ";", " ", "\n", "    ", 
-     RowBox[{"yData", " ", "=", " ", 
-      RowBox[{"data", "[", 
-       RowBox[{"[", 
-        RowBox[{
-         RowBox[{"2", " ", ";;", " ", "All"}], ",", "yIndex"}], "]"}], 
-       "]"}]}], ";", " ", "\n", "    ", 
-     RowBox[{"ListPlot", "[", 
-      RowBox[{
-       RowBox[{"Transpose", "[", 
-        RowBox[{"{", 
-         RowBox[{"xData", ",", " ", "yData"}], "}"}], "]"}], ",", " ", 
-       RowBox[{"AxesLabel", " ", "->", " ", "\n", "      ", 
-        RowBox[{"{", 
-         RowBox[{"columnX", ",", " ", "columnY"}], "}"}]}], ",", " ", 
-       RowBox[{"PlotLabel", " ", "->", " ", 
-        RowBox[{"StringJoin", "[", 
+      "data", ",", "header", ",", "xIndex", ",", "yIndex", ",", "xData", ",", 
+       "yData"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"data", "=", 
+       RowBox[{"Import", "[", "file", "]"}]}], ";", 
+      RowBox[{"header", "=", 
+       RowBox[{"First", "[", "data", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"xIndex", "=", 
+       RowBox[{
+        RowBox[{"Position", "[", 
+         RowBox[{"header", ",", "columnX"}], "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"yIndex", "=", 
+       RowBox[{
+        RowBox[{"Position", "[", 
+         RowBox[{"header", ",", "columnY"}], "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"xData", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
          RowBox[{
-         "columnX", ",", " ", "\n", "       ", "\"\< \:4e0e \>\"", ",", " ", 
-          "columnY", ",", " ", "\"\< \:7684\:6563\:70b9\:56fe\>\""}], "]"}]}],
-        ",", " ", 
-       RowBox[{"PlotStyle", " ", "->", " ", "Blue"}]}], "]"}]}]}], 
-   "]"}]}]], "Input",
- CellChangeTimes->{{3.932586229908922*^9, 3.932586271389677*^9}, 
-   3.9325867760626564`*^9},
- FormatType->"InputForm",
- CellLabel->"In[1]:=",ExpressionUUID->"9d6569d9-9e91-4e41-869f-ddbe72388226"]
+          RowBox[{"2", ";;", "All"}], ",", "xIndex"}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"yData", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"2", ";;", "All"}], ",", "yIndex"}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{
+        RowBox[{"Transpose", "[", 
+         RowBox[{"{", 
+          RowBox[{"xData", ",", "yData"}], "}"}], "]"}], ",", 
+        RowBox[{"AxesLabel", "->", 
+         RowBox[{"{", 
+          RowBox[{"columnX", ",", "columnY"}], "}"}]}], ",", 
+        RowBox[{"PlotLabel", "->", 
+         RowBox[{"StringJoin", "[", 
+          RowBox[{
+          "columnX", ",", "\"\< \:4e0e \>\"", ",", "columnY", ",", 
+           "\"\< \:7684\:6563\:70b9\:56fe\>\""}], "]"}]}], ",", 
+        RowBox[{"PlotStyle", "->", "Blue"}]}], "]"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SortedCSVScatterPlot", "[", 
+  RowBox[{
+  "\"\<sorted1.csv\>\"", ",", "\"\<VIB\:8bc4\:5206\>\"", ",", 
+   "\"\<VIB\:6807\:51c6\:5dee\>\""}], "]"}]}], "Input",ExpressionUUID->\
+"ab7aec9f-1ab2-194f-8691-d1d07d78107d"]
 },
-WindowSize->{571.8, 509.4},
-WindowMargins->{{284.4, Automatic}, {Automatic, 47.4}},
+WindowSize->{571.8, 524.4},
+WindowMargins->{{49.199999999999996`, Automatic}, {
+  37.200000000000045`, Automatic}},
 FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
-ExpressionUUID->"ada8002e-820c-dc41-a483-48462fca24a7"
+ExpressionUUID->"807c0271-556d-8b47-a341-479143bc635b"
 ]
 (* End of Notebook Content *)
 
@@ -110,7 +115,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[1460, 33, 2444, 60, 182, "Input",ExpressionUUID->"9d6569d9-9e91-4e41-869f-ddbe72388226"]
+Cell[1460, 33, 2411, 64, 307, "Input",ExpressionUUID->"ab7aec9f-1ab2-194f-8691-d1d07d78107d"]
 }
 ]
 *)
