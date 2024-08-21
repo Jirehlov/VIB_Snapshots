@@ -9,9 +9,9 @@ df1['total_change'] = df1[columns_to_compare].sum(axis=1)
 df2['total_change'] = df2[columns_to_compare].sum(axis=1)
 df1['total_diff'] = df1['total_change'] - df2['total_change']
 with open('hitnrun.txt', 'w', encoding='utf-8') as f:
-    df1_filtered_total = df1[abs(df1[f'total_diff']) >= 1].copy()
-    top_total = df1_filtered_total.nlargest(10, 'total_diff')
-    bottom_total = df1_filtered_total.nsmallest(5, 'total_diff')[::-1]
+    df1_filtered_total = df1[abs(df1['total_diff']) >= 1].sort_values('total_diff', ascending=False).copy()
+    top_total = df1_filtered_total.head(10)
+    bottom_total = df1_filtered_total.tail(len(df1_filtered_total[df1_filtered_total['total_diff'] < 0]) + 1)
     f.write('总变化：\n')
     for index, row in top_total.iterrows():
         f.write(f"{index}, {row['类型']}, {row['中文标题']}, {row['total_change']} - {df2.loc[index, 'total_change']} = {int(row['total_diff']):+d}\n")
