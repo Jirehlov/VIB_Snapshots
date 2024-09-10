@@ -17,6 +17,7 @@ df2['total_change'] = df2[columns_to_compare].sum(axis=1)
 df1['total_diff'] = df1['total_change'] - df2['total_change']
 df1_filtered_total = df1[abs(df1['total_diff']) >= 1].sort_values('total_diff', ascending=False)
 with open('hitnrun.txt', 'w', encoding='utf-8') as f:
+    f.write("总变化：\n")
     for subset, label in [(df1_filtered_total.head(10), 'top'), (df1_filtered_total.tail(len(df1_filtered_total[df1_filtered_total['total_diff'] < 0]) + 1), 'bottom')]:
         for index, row in subset.iterrows():
             f.write(f"{index}, {row['类型']}, {row['中文标题']}, {row['total_change']} - {df2.loc[index, 'total_change']} = {int(row['total_diff']):+d}\n")
