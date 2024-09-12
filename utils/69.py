@@ -34,8 +34,9 @@ def read_jsonlines_to_graph(files):
                 if ids['s'] and ids['r']:
                     edge_type = relation_type_map.get(data.get('relation_type'), data.get('relation_type'))
                     add_edge(ids['s'], ids['r'], edge_type)
-                if ids['c'] and ids['s'] and 'subject-character.jsonlines' in file:
+                if ids['c'] and ids['s']:
                     edge_type = character_type_map.get(data.get('type'), data.get('type'))
+                    if 'subject-character.jsonlines' in file: edge_type = "角色"
                     add_edge(ids['c'], ids['s'], edge_type)
                 if ids['c'] and ids['p']:
                     edge_type = "配音"
