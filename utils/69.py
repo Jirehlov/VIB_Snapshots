@@ -2,7 +2,6 @@ import json
 import re
 from collections import defaultdict, deque
 import sys
-import time
 def load_names(file, key_prefix, name_extractor):
     with open(file, 'r', encoding='utf-8') as f:
         return {f"{key_prefix}_{data['id']}": name_extractor(data) for line in f for data in [json.loads(line)]}
@@ -60,8 +59,6 @@ def find_longest_shortest_path(graph, names, islands):
     max_steps, longest_path = -1, []
     for island in islands:
         start_node = next(iter(island))
-        current_time = time.time()
-        start_time = time.time()
         max_distance_node = None
         max_distance = -1
         queue = deque([(start_node, 0)])
