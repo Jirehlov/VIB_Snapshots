@@ -121,7 +121,7 @@ def main():
     print("连通分量计算中")
     islands = sorted(find_islands(graph), key=len)
     while True:
-        command = input("\n\n请选择功能并输入节点：\n-s 指定subject\n-p 指定person\n-c 指定character\nisland 显示所有连通分量\nlongest 找到最长的最短路径\nexit 退出\n请输入命令: ").strip()
+        command = input("\n\n请选择功能或输入节点：\n-s 指定subject\n-p 指定person\n-c 指定character\nisland 显示所有连通分量\nlongest 找到最长的最短路径\nexit 退出\n请输入命令: ").strip()
         if command == "exit": break
         args = command.split()
         if len(args) == 0: continue
