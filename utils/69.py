@@ -160,6 +160,6 @@ def main():
             else:
                 print(f"\n在{start_node}与{goal_node}之间不存在路径")
         else:
-            print("\n无效的命令。请确保输入2个节点（寻找最长路径）或4个节点（寻找最短路径）。")
+            print("\n无效的命令。请确保输入1个节点（寻找最长路径）或2个节点（寻找最短路径）。")
 if __name__ == "__main__":
     main()
