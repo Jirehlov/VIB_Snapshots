@@ -8,12 +8,9 @@ character_type_map = {1: '主角', 2: '配角', 3: '客串'}
 def load_names(file, key_prefix, name_extractor):
     with open(file, 'r', encoding='utf-8') as f:
         return {f"{key_prefix}_{data['id']}": name_extractor(data) for line in f for data in [json.loads(line)]}
-def extract_name(data):
-    match = re.search(r'\|简体中文名= ([^\r\n]+)', data.get('infobox', ''))
-    if match: return match.group(1)
-    name_cn = data.get('name_cn')
-    if name_cn: return name_cn
-    return data.get('name', '')
+def extract_name(d):
+    m = re.search(r'\|简体中文名= ([^\r\n]+)', d.get('infobox', ''))
+    return m.group(1) if m else d.get('name_cn', d.get('name', ''))
 def read_jsonlines_to_graph(files):
     graph = defaultdict(set)
     edges = {}
