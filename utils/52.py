@@ -13,7 +13,7 @@ def highlight_differences(old_csv_path, new_csv_path, output_path='compared_outp
     new_csv.set_index(new_csv.columns[0], inplace=True)
     combined_index = sorted(set(old_csv.index).union(new_csv.index))
     def process_row(index):
-        row = [index] + [new_csv.at[index, col] if index in new_csv.index else None for col in new_csv.columns]
+        row = [index] + [new_csv.at[index, col] if index in new_csv.index and col in new_csv.columns else None for col in new_csv.columns]
         return row
     with ThreadPoolExecutor() as executor:
         rows = list(executor.map(process_row, combined_index))
@@ -37,8 +37,8 @@ def highlight_differences(old_csv_path, new_csv_path, output_path='compared_outp
                 elif c_idx > 1:
                     col = data.columns[c_idx - 1]
                     if index in old_csv.index and col in old_csv.columns:
-                        old_value = old_csv.at[index, col]
-                        new_value = new_csv.at[index, col]
+                        old_value = old_csv.get(col, pd.Series()).get(index, None)
+                        new_value = new_csv.get(col, pd.Series()).get(index, None)
                         if old_value != new_value and not (pd.isnull(old_value) and pd.isnull(new_value)):
                             cell.fill = highlight_fill
                             highlighted_cells += 1
@@ -49,6 +49,6 @@ def highlight_differences(old_csv_path, new_csv_path, output_path='compared_outp
     print(f"Highlight ratio: {highlight_ratio:.2f}%")
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python compare_csv.py <old_csv_path> <new_csv_path> [output_path]")
+        print("Usage: python 52.py <old_csv_path> <new_csv_path> [output_path]")
     else:
         highlight_differences(*sys.argv[1:4])
