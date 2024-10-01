@@ -3,8 +3,8 @@ import csv
 from datetime import datetime
 import matplotlib.pyplot as plt
 target_subject = input("请输入目标主题：")
-csv_directory = 'C:\\Users\\contact\\Documents\\GitHub\\VIB_Snapshots\\'
-font_path = r'C:\\Users\\contact\\AppData\\Local\\Microsoft\\Windows\\Fonts\\DFHannotateW7-A.ttf'
+csv_directory = os.path.expandvars('%USERPROFILE%\\Documents\\GitHub\\VIB_Snapshots\\')
+font_path = os.path.expandvars('%LocalAppData%\\Microsoft\\Windows\\Fonts\\DFHannotateW7-A.ttf')
 plt.rcParams['font.family'] = 'DFHannotateW7-A'
 plt.rcParams['font.size'] = 12
 subject_title = ''

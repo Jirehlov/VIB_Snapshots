@@ -32,5 +32,5 @@ def main(directory):
         print(f"File: {file_name}, Entropy: {entropy:.4f}")
     plot_entropy(entropy_values)
 if __name__ == "__main__":
-    directory = 'C:\\Users\\contact\\Documents\\GitHub\\VIB_Snapshots'
+    directory = os.path.expandvars('%USERPROFILE%\\Documents\\GitHub\\VIB_Snapshots')
     main(directory)

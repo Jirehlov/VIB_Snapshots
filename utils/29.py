@@ -1,8 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-skip_counts = pd.read_csv('C:\\Users\\contact\\Documents\\GitHub\\VIB_Snapshots\\server_backup\\skip_counts.csv')['subject_id'].value_counts().groupby(lambda x: x // 10000).sum()
+import os
+skip_counts = pd.read_csv(os.path.expandvars('%USERPROFILE%\\Documents\\GitHub\\VIB_Snapshots\\server_backup\\skip_counts.csv'))['subject_id'].value_counts().groupby(lambda x: x // 10000).sum()
 sorted_counts = pd.read_csv('sorted1.csv', encoding="utf-8-sig")['subject'].value_counts().groupby(lambda x: x // 10000).sum()
-max_subject_id = max(pd.read_csv('C:\\Users\\contact\\Documents\\GitHub\\VIB_Snapshots\\server_backup\\skip_counts.csv')['subject_id'].max(), pd.read_csv('sorted1.csv', encoding="utf-8-sig")['subject'].max())
+max_subject_id = max(pd.read_csv(os.path.expandvars('%USERPROFILE%\\Documents\\GitHub\\VIB_Snapshots\\server_backup\\skip_counts.csv'))['subject_id'].max(), pd.read_csv('sorted1.csv', encoding="utf-8-sig")['subject'].max())
 total_range = max_subject_id // 10000
 skip_values = skip_counts.reindex(range(total_range + 1), fill_value=0)
 sorted_values = sorted_counts.reindex(range(total_range + 1), fill_value=0)

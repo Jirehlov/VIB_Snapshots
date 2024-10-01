@@ -2,7 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import math
-data = pd.read_csv('C:\\Users\\contact\\Documents\\GitHub\\VIB_Snapshots\\server_backup\\skip_counts.csv')
+import os
+data = pd.read_csv(os.path.expandvars('%USERPROFILE%\\Documents\\GitHub\\VIB_Snapshots\\server_backup\\skip_counts.csv'))
 min_id, max_id = data['subject_id'].min(), data['subject_id'].max()
 size = max_id - min_id + 1
 side_length = math.ceil(math.sqrt(size))
