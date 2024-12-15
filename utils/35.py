@@ -16,7 +16,7 @@ def main(json_filename):
         data = json.load(file)
     tags_dict = {}
     find_tags(data, tags_dict)
-    with open(f"{os.path.splitext(json_filename)[0]}.tags.csv", 'w', newline='', encoding='utf-8') as csv_file:
+    with open(f"{os.path.splitext(json_filename)[0]}.tags.csv", 'w', newline='', encoding='utf-8-sig') as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(['name', 'count'])
         writer.writerows(sorted(tags_dict.items(), key=lambda item: item[1], reverse=True))
