@@ -43,6 +43,31 @@ def binary_search(start, end, skip_ranges, result, missing_ids):
         binary_search(start, mid - 1, skip_ranges, result, missing_ids)
         binary_search(mid + 1, end, skip_ranges, result, missing_ids)
     else:
+        print(f"Date for userAge_{mid} not found. Trying +1 and -1...")
+        adjacent_dates = []
+        for offset in [-1, 1]:
+            adjacent_id = mid + offset
+            if adjacent_id > 0:
+                for r_start, r_end in skip_ranges:
+                    if r_start <= adjacent_id <= r_end:
+                        adjacent_date = result.get(f"userAge_{r_start}", None)
+                        print(f"Skipping fetch for {adjacent_id}. Using date {adjacent_date}")
+                        adjacent_dates.append((adjacent_id, adjacent_date))
+                        break
+                else:
+                    adjacent_date = get_user_date(adjacent_id)
+                    print(f"Fetched {adjacent_id} with date {adjacent_date}")
+                    adjacent_dates.append((adjacent_id, adjacent_date))
+        if len(adjacent_dates) == 2 and adjacent_dates[0][1] == adjacent_dates[1][1]:
+            result[f"userAge_{mid-1}"] = adjacent_dates[0][1]
+            result[f"userAge_{mid}"] = adjacent_dates[0][1]
+            result[f"userAge_{mid+1}"] = adjacent_dates[0][1]
+            print(f"Mid {mid} and its neighbors have the same date: {adjacent_dates[0][1]}")
+            save_json(result, "user_data.json")
+            skip_ranges[:] = calculate_skip_ranges(result)
+            return
+        else:
+            print(f"The date of {mid} is still a mystery.")
         missing_ids.append(mid)
 def main():
     upper_limit = int(sys.argv[1])
@@ -55,4 +80,3 @@ def main():
         json.dump(missing_ids, f)
 if __name__ == "__main__":
     main()
-
