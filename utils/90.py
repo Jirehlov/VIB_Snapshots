@@ -2,19 +2,17 @@ import json
 import csv
 import datetime
 from collections import defaultdict
-with open('user_data.json', 'r') as f:
+with open('userages.json', 'r') as f:
     data = json.load(f)
 date_by_id = {}
 valid_ids = []
 for key in data:
-    if key.startswith('userAge_'):
-        id_part = key.split('_')[1]
-        if id_part.isdigit():
-            id = int(id_part)
-            valid_ids.append(id)
-            date_str = data[key]
-            date = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
-            date_by_id[id] = date
+    if key.isdigit():
+        id = int(key)
+        valid_ids.append(id)
+        date_str = data[key]
+        date = datetime.datetime.strptime(date_str, '%Y-%m-%d').date()
+        date_by_id[id] = date
 date_to_ids = defaultdict(list)
 for id, date in date_by_id.items():
     date_to_ids[date].append(id)
@@ -40,7 +38,7 @@ filled_dates = set()
 sorted_original_ids = sorted(date_by_id.keys())
 for i in range(len(sorted_original_ids) - 1):
     current_id = sorted_original_ids[i]
-    next_id = sorted_original_ids[i+1]
+    next_id = sorted_original_ids[i + 1]
     if next_id - current_id == 1:
         current_date = date_by_id[current_id]
         next_date = date_by_id[next_id]

@@ -15,20 +15,13 @@ def get_user_date(user_id):
         end = response.text.find("</span>", start)
         return response.text[start:end].strip().replace("\u52a0\u5165", "").strip()
     return None
-def get_date_for_id(id, data):
-    for k, v in data.items():
-        if k.startswith("userAge_") and k[8:].isdigit() and int(k[8:]) <= id:
-            date = v
-        if k.startswith("userAge_") and k[8:].isdigit() and int(k[8:]) > id:
-            return date
-    return None
 def main():
-    upper_limit = int(sys.argv[1])
-    data = load_json("user_data.json")
-    random_ids = random.sample(range(1, upper_limit + 1), 10)
+    data = load_json("userages.json")
+    user_ids = [int(k) for k in data.keys() if k.isdigit()]
+    random_ids = random.sample(user_ids, min(10, len(user_ids)))  
     for id in random_ids:
         actual_date = get_user_date(id)
-        json_date = get_date_for_id(id, data)
+        json_date = data[str(id)]
         status = "✔" if actual_date == json_date else "✘"
         print(f"ID: {id}, Actual Date: {actual_date}, JSON Date: {json_date} {status}")
         time.sleep(delay)
