@@ -10,12 +10,11 @@ excluded_ids = set(df.iloc[:, 0])
 all_ids = set(range(0, max_subjects + 1))
 remaining_ids = list(all_ids - excluded_ids)
 total_ids = len(remaining_ids)
-num_groups = (total_ids // 40000) + 1
+num_groups = (total_ids + 39999) // 40000
 labels = np.concatenate([np.full(40000, i) for i in range(num_groups)])[:total_ids]
-labels = labels[labels != labels.max()]
 np.random.shuffle(labels)
 new_df = pd.DataFrame({
-    'subject_id': remaining_ids[:len(labels)],
+    'subject_id': remaining_ids,
     'count': labels
 })
 new_df.to_csv('randomed_skip_counts.csv', index=False)
