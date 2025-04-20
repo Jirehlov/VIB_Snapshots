@@ -1,16 +1,25 @@
 import pandas as pd
 from datetime import timedelta
-df1 = pd.read_csv('sorted1.csv', encoding='utf-8-sig').set_index('subject')
-df2 = pd.read_csv('sorted3.csv', encoding='utf-8-sig').set_index('subject')
+import argparse
+parser = argparse.ArgumentParser(description="比较两个 CSV 文件中的一击脱离变化")
+parser.add_argument("csv1")
+parser.add_argument("csv2")
+parser.add_argument("-k", "--keep-all", action="store_true", help="保留所有交集 subject，不筛选更新时间间隔")
+args = parser.parse_args()
+df1 = pd.read_csv(args.csv1, encoding='utf-8-sig').set_index('subject')
+df2 = pd.read_csv(args.csv2, encoding='utf-8-sig').set_index('subject')
 df1['更新时间'] = pd.to_datetime(df1['更新时间'])
 df2['更新时间'] = pd.to_datetime(df2['更新时间'])
 columns_to_compare = [f'tc{i}' for i in range(1, 74, 8)]
 df1[columns_to_compare] = df1[columns_to_compare].apply(pd.to_numeric, errors='coerce').fillna(0)
 df2[columns_to_compare] = df2[columns_to_compare].apply(pd.to_numeric, errors='coerce').fillna(0)
-valid_subjects = [
-    subject for subject in df1.index.intersection(df2.index)
-    if abs(df1.at[subject, '更新时间'] - df2.at[subject, '更新时间']) <= timedelta(days=10)
-]
+if args.keep_all:
+    valid_subjects = df1.index.intersection(df2.index)
+else:
+    valid_subjects = [
+        subject for subject in df1.index.intersection(df2.index)
+        if abs(df1.at[subject, '更新时间'] - df2.at[subject, '更新时间']) <= timedelta(days=10)
+    ]
 df1, df2 = df1.loc[valid_subjects], df2.loc[valid_subjects]
 df1['total_change'] = df1[columns_to_compare].sum(axis=1)
 df2['total_change'] = df2[columns_to_compare].sum(axis=1)
