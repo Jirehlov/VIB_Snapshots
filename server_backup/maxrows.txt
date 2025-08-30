@@ -245,7 +245,7 @@
 列 rd53 最大值所在的行: ['454684', '2', 'BanG Dream! Ave Mujica', 'BanG Dream! Ave Mujica']
 列 rd54 最大值所在的行: ['454684', '2', 'BanG Dream! Ave Mujica', 'BanG Dream! Ave Mujica']
 列 rd55 最大值所在的行: ['454684', '2', 'BanG Dream! Ave Mujica', 'BanG Dream! Ave Mujica']
-列 rd56 最大值所在的行: ['306429', '2', '神様になった日', '成神之日']
+列 rd56 最大值所在的行: ['454684', '2', 'BanG Dream! Ave Mujica', 'BanG Dream! Ave Mujica']
 列 rd57 最大值所在的行: ['454684', '2', 'BanG Dream! Ave Mujica', 'BanG Dream! Ave Mujica']
 列 rd58 最大值所在的行: ['454684', '2', 'BanG Dream! Ave Mujica', 'BanG Dream! Ave Mujica']
 列 rd59 最大值所在的行: ['454684', '2', 'BanG Dream! Ave Mujica', 'BanG Dream! Ave Mujica']
