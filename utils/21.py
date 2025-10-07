@@ -16,4 +16,4 @@ def csv_to_color_pixel_image(csv_path, output_image_path, colormap='viridis'):
     image_data = (colored_data[:, :, :3] * 255).astype(np.uint8)
     img = Image.fromarray(image_data)
     img.save(output_image_path)
-csv_to_color_pixel_image('sorted1.csv', 'pixel_image.png', colormap='viridis')
+csv_to_color_pixel_image('sorted1.csv', '21.png', colormap='viridis')

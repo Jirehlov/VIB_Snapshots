@@ -15,4 +15,4 @@ def csv_to_prime_black_white_image(csv_path, output_image_path):
                 image_data[i, j] = [0, 0, 0]
     img = Image.fromarray(image_data)
     img.save(output_image_path)
-csv_to_prime_black_white_image('sorted1.csv', 'prime_pixel_image.png')
+csv_to_prime_black_white_image('sorted1.csv', '75.png')
