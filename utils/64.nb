@@ -1,0 +1,122 @@
+(* Content-type: application/vnd.wolfram.cdf.text *)
+
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*************************************************************************)
+(*                                                                       *)
+(*                                                                       *)
+(*  This file was created under the Wolfram Enterprise licensing terms.  *)
+(*                                                                       *)
+(*       For additional information concerning CDF licensing see:        *)
+(*                                                                       *)
+(*        www.wolfram.com/cdf/adopting-cdf/licensing-options.html        *)
+(*                                                                       *)
+(*                                                                       *)
+(*                                                                       *)
+(*************************************************************************)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[      1060,         20]
+NotebookDataLength[      3366,        101]
+NotebookOptionsPosition[      3875,         99]
+NotebookOutlinePosition[      4314,        116]
+CellTagsIndexPosition[      4271,        113]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SortedCSVScatterPlot", "[", 
+    RowBox[{"file_String", ",", "columnX_String", ",", "columnY_String"}], 
+    "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "data", ",", "header", ",", "xIndex", ",", "yIndex", ",", "xData", ",", 
+       "yData"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"data", "=", 
+       RowBox[{"Import", "[", "file", "]"}]}], ";", 
+      RowBox[{"header", "=", 
+       RowBox[{"First", "[", "data", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"xIndex", "=", 
+       RowBox[{
+        RowBox[{"Position", "[", 
+         RowBox[{"header", ",", "columnX"}], "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"yIndex", "=", 
+       RowBox[{
+        RowBox[{"Position", "[", 
+         RowBox[{"header", ",", "columnY"}], "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"xData", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"2", ";;", "All"}], ",", "xIndex"}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"yData", "=", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"2", ";;", "All"}], ",", "yIndex"}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{
+        RowBox[{"Transpose", "[", 
+         RowBox[{"{", 
+          RowBox[{"xData", ",", "yData"}], "}"}], "]"}], ",", 
+        RowBox[{"AxesLabel", "->", 
+         RowBox[{"{", 
+          RowBox[{"columnX", ",", "columnY"}], "}"}]}], ",", 
+        RowBox[{"PlotLabel", "->", 
+         RowBox[{"StringJoin", "[", 
+          RowBox[{
+          "columnX", ",", "\"\< \:4e0e \>\"", ",", "columnY", ",", 
+           "\"\< \:7684\:6563\:70b9\:56fe\>\""}], "]"}]}], ",", 
+        RowBox[{"PlotStyle", "->", "Blue"}]}], "]"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"SortedCSVScatterPlot", "[", 
+  RowBox[{
+  "\"\<sorted1.csv\>\"", ",", "\"\<VIB\:8bc4\:5206\>\"", ",", 
+   "\"\<VIB\:6807\:51c6\:5dee\>\""}], "]"}]}], "Input",ExpressionUUID->\
+"ab7aec9f-1ab2-194f-8691-d1d07d78107d"]
+},
+WindowSize->{571.8, 524.4},
+WindowMargins->{{49.199999999999996`, Automatic}, {
+  37.200000000000045`, Automatic}},
+FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"807c0271-556d-8b47-a341-479143bc635b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[1460, 33, 2411, 64, 307, "Input",ExpressionUUID->"ab7aec9f-1ab2-194f-8691-d1d07d78107d"]
+}
+]
+*)
+
